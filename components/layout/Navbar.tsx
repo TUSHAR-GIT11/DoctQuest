@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -28,7 +29,7 @@ export default function Navbar() {
         {/* Brand */}
         <Link
           href="#home"
-          aria-label="Wellora home"
+          aria-label="DoctQuest home"
           onClick={closeMenu}
           className="group flex items-center gap-2.5"
         >
@@ -37,7 +38,7 @@ export default function Navbar() {
           </span>
 
           <span className="text-2xl font-bold tracking-[-0.06em] text-[#214c3b]">
-            wellora<span className="text-[#a4b88d]">.</span>
+            DoctQuest<span className="text-[#a4b88d]">.</span>
           </span>
         </Link>
 
