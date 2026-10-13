@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f7f1;
+  --foreground: #26372e;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Wellora — image motion effects */
+
+@keyframes wellora-image-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes wellora-image-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes wellora-image-drift {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+.wellora-image-reveal {
+  animation: wellora-image-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.wellora-image-float {
+  animation: wellora-image-float 6s ease-in-out infinite;
+}
+
+.wellora-image-motion {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wellora-image-motion:hover {
+  transform: scale(1.035);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wellora-image-reveal,
+  .wellora-image-float {
+    animation: none;
+  }
+
+  .wellora-image-motion {
+    transition: none;
+  }
+}
