@@ -12,10 +12,11 @@ import {
 } from "lucide-react";
 
 const navigation = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Our approach", href: "#approach" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Our Approach", href: "/approach" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -26,14 +27,13 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#e5e6dc]/80 bg-[#f8f7f1]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[84px] lg:px-16 xl:px-24">
-        {/* Brand */}
         <Link
-          href="#home"
+          href="/"
           aria-label="DoctQuest home"
           onClick={closeMenu}
           className="group flex items-center gap-2.5"
         >
-          <span className="flex size-10 items-center justify-center rounded-full bg-[#e4ebe0] text-[#214c3b] transition duration-300 group-hover:rotate-[-8deg] group-hover:bg-[#d7e3d0]">
+          <span className="flex size-10 items-center justify-center rounded-full bg-[#e4ebe0] text-[#214c3b] transition duration-300 group-hover:bg-[#d7e3d0]">
             <Heart size={20} strokeWidth={1.7} />
           </span>
 
@@ -42,16 +42,15 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop navigation */}
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-7 md:flex lg:gap-9"
+          className="hidden items-center gap-5 md:flex lg:gap-7"
         >
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group relative py-2 text-xs font-medium text-[#626b61] transition-colors duration-200 hover:text-[#214c3b] lg:text-sm"
+              className="group relative py-2 text-xs font-medium text-[#626b61] transition-colors hover:text-[#214c3b] lg:text-sm"
             >
               {item.label}
               <span className="absolute bottom-0 left-0 h-px w-0 bg-[#829775] transition-all duration-300 group-hover:w-full" />
@@ -59,10 +58,9 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop CTA and mobile toggle */}
         <div className="flex items-center gap-3">
           <Link
-            href="#contact"
+            href="/contact"
             className="group hidden min-h-11 items-center gap-2 rounded-full bg-[#214c3b] px-5 text-xs font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#173b2d] sm:inline-flex"
           >
             Let&apos;s talk
@@ -75,9 +73,7 @@ export default function Navbar() {
           <button
             type="button"
             aria-label={
-              isMenuOpen
-                ? "Close navigation menu"
-                : "Open navigation menu"
+              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
             }
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
@@ -89,10 +85,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile navigation */}
       <div
         id="mobile-navigation"
-        aria-label="Mobile navigation"
         aria-hidden={!isMenuOpen}
         className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-in-out md:hidden ${
           isMenuOpen
@@ -101,7 +95,10 @@ export default function Navbar() {
         }`}
       >
         <div className="min-h-0 overflow-hidden">
-          <nav className="mx-auto max-w-[1440px] px-5 pb-5 pt-3 sm:px-8">
+          <nav
+            aria-label="Mobile navigation"
+            className="mx-auto max-w-[1440px] px-5 pb-5 pt-3 sm:px-8"
+          >
             {navigation.map((item, index) => (
               <Link
                 key={item.href}
@@ -109,9 +106,7 @@ export default function Navbar() {
                 tabIndex={isMenuOpen ? 0 : -1}
                 onClick={closeMenu}
                 style={{
-                  transitionDelay: isMenuOpen
-                    ? `${index * 40}ms`
-                    : "0ms",
+                  transitionDelay: isMenuOpen ? `${index * 40}ms` : "0ms",
                 }}
                 className="flex items-center justify-between border-b border-[#e5e6dc] py-4 text-sm font-medium text-[#405342] transition-colors hover:text-[#829775] last:border-0"
               >
@@ -121,7 +116,7 @@ export default function Navbar() {
             ))}
 
             <Link
-              href="#contact"
+              href="/contact"
               tabIndex={isMenuOpen ? 0 : -1}
               onClick={closeMenu}
               className="mt-4 flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#214c3b] px-5 text-sm font-medium text-white transition hover:bg-[#173b2d] sm:hidden"

@@ -1,13 +1,14 @@
-
 import { ArrowRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import Hero from "../components/home/Hero";
-import About from "../components/home/About";
-import Services from "../components/home/Services";
-import Approach from "../components/home/Approach";
-import ContactCTA from "../components/home/ContactCTA";
+
+import Hero from "../components/sections/home/Hero";
+import AboutSection from "../components/sections/home/AboutSection";
+import ServicesSection from "../components/sections/home/ServicesSection";
+import ApproachSection from "../components/sections/home/ApproachSection";
+import ContactCTA from "../components/sections/home/ContactCTA";
 
 export default function Home() {
   return (
@@ -22,23 +23,23 @@ export default function Home() {
 
         <span>Your wellbeing deserves a little more attention.</span>
 
-        <a
-          href="#services"
+        <Link
+          href="/approach"
           className="inline-flex items-center gap-1 text-[#d4e2ca] underline-offset-4 hover:underline"
         >
           Explore our approach
           <ArrowRight size={13} aria-hidden="true" />
-        </a>
+        </Link>
       </div>
-
 
       <Navbar />
 
       <Hero />
-      <About />
-      <Services />
-      <Approach />
+      <AboutSection />
+      <ServicesSection />
+      <ApproachSection />
       <ContactCTA />
+
       <Footer />
     </main>
   );

@@ -160,15 +160,7 @@ export default function Hero() {
       <div className="mx-auto grid max-w-[1440px] items-center gap-14 px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:grid-cols-[1.04fr_0.96fr] lg:gap-12 lg:px-16 lg:pb-24 lg:pt-36 xl:gap-20 xl:px-24">
         {/* Hero content */}
         <div className="relative z-10 max-w-[650px]">
-          <div className="hero-enter inline-flex items-center gap-3 rounded-full border border-[#dce4d5] bg-white/75 px-4 py-2.5 shadow-sm shadow-[#26372e]/[0.03] backdrop-blur-sm">
-            <span className="hero-dot size-2 rounded-full bg-[#829775]" />
-
-            <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#526b50] sm:text-[11px]">
-              A more thoughtful kind of wellness
-            </span>
-
-            <Sparkles size={14} className="text-[#829775]" />
-          </div>
+          
 
           <h1
             id="hero-heading"

@@ -8,7 +8,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import ScrollReveal from "../ScrollReveal";
+import ScrollReveal from "../../ScrollReveal";
 
 const principles = [
   {

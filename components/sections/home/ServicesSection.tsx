@@ -1,7 +1,7 @@
 import { ArrowDownRight, ArrowUpRight, CheckCircle2, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { services } from "../../data/services";
-import ScrollReveal from "../ScrollReveal";
+import { services } from "../../../data/services";
+import ScrollReveal from "../../ScrollReveal";
 
 const highlights = [
   "Personalized guidance",
@@ -294,7 +294,7 @@ export default function Services() {
             </div>
 
             <a
-              href="#contact"
+              href="/contact"
               className="services-bottom-link group inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-[#31543a] hover:text-[#78916d] sm:self-center"
             >
               Let&apos;s talk
@@ -310,3 +310,5 @@ export default function Services() {
     </section>
   );
 }
+
+

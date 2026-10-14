@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRight, Heart, ShieldCheck, Sprout } from "lucide-react";
-import ScrollReveal from "../ScrollReveal";
+import ScrollReveal from "../../ScrollReveal";
 
 const values = [
   {
