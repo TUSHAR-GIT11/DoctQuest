@@ -8,14 +8,16 @@ export default function ContactCTA() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("Sending...");
+    setIsSending(true);
+    setStatus("");
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/tushargupta10th@gmail.com",
+        "https://formsubmit.co/ajax/ae2e31b809bf68592e2165cef5d324ea",
         {
           method: "POST",
           headers: {
@@ -34,18 +36,33 @@ export default function ContactCTA() {
 
       const result = await response.json();
 
-      if (!response.ok || result.success === false || result.success === "false") {
-        throw new Error("Message submission failed");
+      console.log("FormSubmit response:", result);
+
+      if (
+        !response.ok ||
+        result.success === false ||
+        result.success === "false"
+      ) {
+        throw new Error(
+          result.message || "FormSubmit rejected the request."
+        );
       }
 
       setStatus("Message sent successfully!");
+
       setName("");
       setEmail("");
       setMessage("");
-    } catch {
+    } catch (error) {
+      console.error("Contact form error:", error);
+
       setStatus(
-        "Message could not be sent. Please check your FormSubmit activation."
+        error instanceof Error
+          ? `Failed to send: ${error.message}`
+          : "Unable to send your message. Please try again."
       );
+    } finally {
+      setIsSending(false);
     }
   }
 
@@ -76,74 +93,91 @@ export default function ContactCTA() {
         >
           <div>
             <label
-              htmlFor="name"
+              htmlFor="contact-name"
               className="mb-2 block text-sm font-medium text-[#214c3b]"
             >
               Your Name
             </label>
+
             <input
-              id="name"
+              id="contact-name"
+              name="name"
               type="text"
+              autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your name"
               required
+              maxLength={100}
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#829775] focus:ring-2 focus:ring-[#829775]/20"
             />
           </div>
 
           <div>
             <label
-              htmlFor="email"
+              htmlFor="contact-email"
               className="mb-2 block text-sm font-medium text-[#214c3b]"
             >
               Email Address
             </label>
+
             <input
-              id="email"
+              id="contact-email"
+              name="email"
               type="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
+              maxLength={254}
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#829775] focus:ring-2 focus:ring-[#829775]/20"
             />
           </div>
 
           <div>
             <label
-              htmlFor="message"
+              htmlFor="contact-message"
               className="mb-2 block text-sm font-medium text-[#214c3b]"
             >
               Your Message
             </label>
+
             <textarea
-              id="message"
+              id="contact-message"
+              name="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Write your message here..."
               rows={5}
               required
+              minLength={10}
+              maxLength={5000}
               className="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#829775] focus:ring-2 focus:ring-[#829775]/20"
             />
           </div>
 
           <button
             type="submit"
-            disabled={status === "Sending..."}
+            disabled={isSending}
             className="w-full rounded-full bg-[#214c3b] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#173b2d] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {status === "Sending..." ? "Sending..." : "Send Message"}
+            {isSending ? "Sending..." : "Send Message"}
           </button>
 
           {status && (
             <p
               role="status"
-              className="text-center text-sm text-[#214c3b]"
+              aria-live="polite"
+              className="break-words text-center text-sm text-[#214c3b]"
             >
               {status}
             </p>
           )}
+
+          <p className="text-center text-xs text-gray-500">
+            Your message will be sent to our contact email.
+          </p>
         </form>
       </div>
     </section>
